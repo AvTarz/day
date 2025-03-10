@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love</title>
+    <style>
+        /* Base styles and variables */
+        :root {
+            --primary-color: #1e3a8a; /* Royal blue */
+            --secondary-color: #93c5fd; /* Light blue */
+            --text-color: #1e293b; /* Dark slate */
+            --light-color: #fff;
+            --accent-color: #3b82f6; /* Bright blue */
+            --complement-color: #f0b429; /* Golden yellow - complementary to blue */
+            --font-main: 'Montserrat', sans-serif;
+            --font-accent: 'Dancing Script', cursive;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f8fafc; /* Very light blue-gray */
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-accent);
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: 4rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.8)), url('/api/placeholder/1200/800') center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+        
+        .header-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-color);
+        }
+        
+        .header-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light-color);
+        }
+        
+        /* Photo Gallery */
+        .gallery {
+            background-color: #dbeafe; /* Very light blue */
+            padding: 5rem 0;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 58, 138, 0.8); /* Royal blue with opacity */
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Love Letter Section */
+        .love-letter {
+            background-color: #fff;
+            padding: 5rem 0;
+        }
+        
+        .letter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+            border: 2px solid var(--accent-color);
+            border-radius: 15px;
+            z-index: -1;
+        }
+        
+        .love-letter h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .letter-text {
+            font-family: var(--font-accent);
+            font-size: 2rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        /* Memory Timeline */
+        .memory-timeline {
+            background-color: #eff6ff; /* Very light blue */
+            padding: 5rem 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: #fff;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #fff;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        /* Reasons Section */
+        .reasons {
+            background-color: var(--light-color);
+            padding: 5rem 0;
+        }
+        
+        .reasons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .reason-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--complement-color);
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reason-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        /* Animation */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            transform: rotate(45deg);
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -10px;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: rotate(45deg) translateY(0px);
+            }
+            50% {
+                transform: rotate(45deg) translateY(-20px);
+            }
+            100% {
+                transform: rotate(45deg) translateY(0px);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            background-color: var(--complement-color);
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--complement-color);
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--complement-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--light-color);
+            border-color: var(--light-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+        }
+        
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .music-control {
+            width: 50px;
+            height: 50px;
+            background-color: var(--complement-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .header-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header-content p {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+                right: auto;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+        
+        /* Floating Hearts Animation */
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            z-index: -1;
+        }
+        
+        /* Golden star animations in the background */
+        .star {
+            position: absolute;
+            background-color: var(--complement-color);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            opacity: 0.3;
+            animation: starTwinkle 3s infinite ease-in-out;
+        }
+        
+        @keyframes starTwinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <h1>Happy Birthday, My Love</h1>
+            <p>Today we celebrate the most amazing person I know. You make every day special, and today is all about you.</p>
+            <div class="btn-group">
+                <a href="#gallery" class="btn">Our Memories</a>
+                <a href="#letter" class="btn btn-outline">My Letter To You</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Our Beautiful Memories</h2>
+            <p>Each moment with you is a treasure. Here are some of my favorites.</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="IMG_9036.JPG" alt="Memory 1">
+                    <div class="gallery-caption">Our first date</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_5284.JPG" alt="Memory 2">
+                    <div class="gallery-caption">First meeting in 2 years</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="smile.JPG" alt="Memory 3">
+                    <div class="gallery-caption">Your beautiful smile</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="JPEG image-441B-9F40-6E-0.jpeg" alt="Memory 4">
+                    <div class="gallery-caption">Your birthday last year</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_0212.JPG" alt="Memory 5">
+                    <div class="gallery-caption">Favorite picture of you</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_0914.JPG" alt="Memory 6">
+                    <div class="gallery-caption">Favorite picture of us</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Love Letter Section -->
+    <section id="letter" class="love-letter">
+        <div class="container">
+            <div class="letter-container">
+                <h2>My Dearest Love,</h2>
+                <div class="letter-text">
+                    <p>Happy Birthday to the most wonderful person I've ever known. As I write this letter, I'm thinking about all the moments that have led us here - the laughs we've shared, the challenges we've overcome, and the love that has grown between us.</p>
+                    
+                    <p>You make every day brighter just by being you. Your smile, your kindness, your strength that I've grown to adore - everything about you makes my life more beautiful.</p>
+                    
+                    <p>On your special day, I want you to know how grateful I am to have you in my life. You inspire me to be better, you comfort me when I'm down, and you celebrate with me when things go well. You are my partner, my confidant, and my best friend.</p>
+                    
+                    <p>As you start this new year of your life, I hope it brings you all the happiness, success, and love that you deserve. I promise to be by your side through it all, cheering you on and loving you more each day.</p>
+                    
+                    <p>Happy Birthday, my love. Here's to many more years of creating beautiful memories together.</p>
+                    
+                    <p>With all my heart,<br>YOUR LOVER</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Memory Timeline Section -->
+    <section class="memory-timeline">
+        <div class="container">
+            <h2>Our Journey Together</h2>
+            <p>Every moment with you becomes a cherished memory. Here's a timeline of our story so far.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="timeline-date">The Day We Met</h3>
+                        <p>I'll never forget the first time I saw you. Standing afar from me, you looked like an Angel.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="timeline-date">Our First Date</h3>
+                        <p>There's not much to say, i enjoyed every bit of it </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="timeline-date">First "I Love You"</h3>
+                        <p>I remember this day like it was yesturday. My heart was racing when I said those words but i meant every word!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3 class="timeline-date">Our Little Arguments</h3>
+                        <p>Even though we do not always see eye to eye on certain things, it does not change how i feel about you.I will always love you</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3 class="timeline-date">Today</h3>
+                        <p>Another year to celebrate you, with many more adventures ahead of us.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reasons I Love You Section -->
+    <section id="reasons" class="reasons">
+        <div class="container">
+            <h2>Reasons Why I Love You</h2>
+            <p>There are countless reasons, but here are just a few...</p>
+            
+            <div class="reasons-container">
+                <div class="reason-card">
+                    <div class="reason-number">1</div>
+                    <h3>Your Smile</h3>
+                    <p>It brightens even my darkest days and makes everything better.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">2</div>
+                    <h3>Your Kindness</h3>
+                    <p>The way you care for others shows the beauty of your heart.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">3</div>
+                    <h3>Your Strength</h3>
+                    <p>About 2% of people commit suicide from experiencing what you've been through but you're still here and i admire you for that.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">4</div>
+                    <h3>Your Laughter</h3>
+                    <p>It's the most beautiful sound in the world to me.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">5</div>
+                    <h3>Your Support</h3>
+                    <p>You believe in me even when I don't believe in myself.</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">6</div>
+                    <h3>Your Heart</h3>
+                    <p>You love with a depth and passion that takes my breath away.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Birthday Wishes Section -->
+    <section class="wishes" style="background-color: #dbeafe; text-align: center;">
+        <div class="container">
+            <h2>Birthday Wishes</h2>
+            <p>For this special year ahead, I wish you...</p>
+            
+            <div style="max-width: 700px; margin: 0 auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <p style="font-family: var(--font-accent); font-size: 1.5rem; margin-bottom: 2rem;">
+                    <span style="display: block; margin-bottom: 1rem; color: var(--primary-color);">✧ Joy in every moment</span>
+                    <span style="display: block; margin-bottom: 1rem; color: var(--primary-color);">✧ Success in all your endeavors</span>
+                    <span style="display: block; margin-bottom: 1rem; color: var(--primary-color);">✧ Love that surrounds you always</span>
+                    <span style="display: block; margin-bottom: 1rem; color: var(--primary-color);">✧ Peace in your heart</span>
+                    <span style="display: block; margin-bottom: 1rem; color: var(--primary-color);">✧ Adventures that fulfill you</span>
+                    <span style="display: block; color: var(--primary-color);">✧ Dreams that come true</span>
+                </p>
+                
+                <a href="#" class="btn" id="birthdaySurpriseBtn">Happpy Birthday</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ just for you</p>
+        <p>Happy Birthday, My Love!</p>
+    </footer>
+    
+    <!-- Music Player 
+    <div class="music-player">
+        <div class="music-control" id="musicControl">
+            <i class="fas fa-play" id="playIcon"></i>
+        </div>
+    </div> -->
+    
+    <!-- JavaScript -->
+    <script>
+        // Create floating hearts and stars
+        function createBackground() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heartsCount = 15;
+            const starsCount = 15;
+            
+            // Create hearts
+            for (let i = 0; i < heartsCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    
+                    // Random position, size and animation duration
+                    const left = Math.random() * 100;
+                    const size = Math.random() * 20 + 10;
+                    const duration = Math.random() * 5 + 3;
+                    
+                    heart.style.left = `${left}%`;
+                    heart.style.width = `${size}px`;
+                    heart.style.height = `${size}px`;
+                    heart.style.animation = `heartFloat ${duration}s linear infinite`;
+                    heart.style.animationDelay = `${Math.random() * 5}s`;
+                    
+                    heartsContainer.appendChild(heart);
+                }, i * 300);
+            }
+            
+            // Create stars
+            for (let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const size = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                
+                document.body.appendChild(star);
+            }
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Birthday surprise button
+        document.getElementById('birthdaySurpriseBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create a shower of hearts and stars effect
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    
+                    // Alternate between hearts and stars
+                    if (i % 2 === 0) {
+                        element.classList.add('heart');
+                    } else {
+                        element.classList.add('star');
+                    }
+                    
+                    const left = Math.random() * 100;
+                    const size = Math.random() * 20 + 10;
+                    
+                    element.style.left = `${left}%`;
+                    element.style.top = '100%';
+                    element.style.width = `${size}px`;
+                    element.style.height = `${size}px`;
+                    element.style.animation = `heartFloat ${Math.random() * 4 + 2}s linear`;
+                    
+                    document.body.appendChild(element);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(element);
+                    }, 6000);
+                }, i * 50);
+            }
+            
+            // Show a special message
+            const messageBox = document.createElement('div');
+            messageBox.style.position = 'fixed';
+            messageBox.style.top = '50%';
+            messageBox.style.left = '50%';
+            messageBox.style.transform = 'translate(-50%, -50%)';
+            messageBox.style.background = 'white';
+            messageBox.style.padding = '2rem';
+            messageBox.style.borderRadius = '10px';
+            messageBox.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.2)';
+            messageBox.style.zIndex = '1000';
+            messageBox.style.maxWidth = '90%';
+            messageBox.style.width = '500px';
+            messageBox.style.textAlign = 'center';
+            messageBox.style.border = `4px solid var(--complement-color)`;
+            
+            messageBox.innerHTML = `
+                <h2 style="color: var(--primary-color); font-family: var(--font-accent);">I Love You!</h2>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">You mean everything to me. Thank you for being the amazing person you are.</p>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">Happy Birthday, my love! 🎂</p>
+                <button id="closeMessage" style="background: var(--primary-color); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; margin-top: 1rem;">Close</button>
+            `;
+            
+            document.body.appendChild(messageBox);
+            
+            document.getElementById('closeMessage').addEventListener('click', function() {
+                document.body.removeChild(messageBox);
+            });
+        });
+        
+        // Music player functionality (mock)
+        const musicControl = document.getElementById('musicControl');
+        const playIcon = document.getElementById('playIcon');
+        let isPlaying = false;
+        
+        musicControl.addEventListener('click', function() {
+            isPlaying = !isPlaying;
+            
+            if (isPlaying) {
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                // In a real implementation, you would play music here
+                musicControl.style.backgroundColor = '#dba514'; // Darker gold when playing
+            } else {
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                // In a real implementation, you would pause music here
+                musicControl.style.backgroundColor = 'var(--complement-color)';
+            }
+        });
+        
+        // Initialize background elements
+        window.addEventListener('load', createBackground);
+        
+        // Animate elements on scroll
+        function fadeInOnScroll() {
+            const elements = document.querySelectorAll('.gallery-item, .letter-container, .timeline-item, .reason-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const isVisible = (elementTop < window.innerHeight) && (elementBottom > 0);
+                
+                if (isVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = element.classList.contains('gallery-item') ? 'translateY(0)' : 
+                                             element.classList.contains('reason-card') ? 'translateY(0)' : 'none';
+                }
+            });
+        }
+        
+        // Set initial opacity for animation elements
+       
